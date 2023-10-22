@@ -2,7 +2,7 @@
 
 export default function ReservationCard() {
   return (
-    <div className="sticky top-4 rounded bg-white p-3 shadow">
+    <div className="sticky top-4 rounded bg-white p-3 shadow-lg">
       <h4 className="border-b pb-2 text-center text-lg font-bold">
         Make a reservation
       </h4>
