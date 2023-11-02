@@ -1,5 +1,10 @@
+import { Metadata } from "next";
 import Header from "./components/Header";
 import ReserveForm from "./components/ReserveForm";
+
+export const metadata: Metadata = {
+  title: "Reserve at Milestones Grill | OpenTable",
+};
 
 export default function Reserve() {
   return (

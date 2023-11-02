@@ -1,7 +1,10 @@
-import Header from "../components/Header";
+import { Metadata } from "next";
 import RestaurantNavbar from "../components/RestaurantNavbar";
 import Menu from "../components/Menu";
-import RestaurantContainer from "../components/RestaurantContainer";
+
+export const metadata: Metadata = {
+  title: "Menu of Milestones Grill | OpenTable",
+};
 
 export default function RestaurantMenu() {
   return (
