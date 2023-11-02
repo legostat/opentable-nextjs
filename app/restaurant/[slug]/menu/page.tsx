@@ -5,14 +5,9 @@ import RestaurantContainer from "../components/RestaurantContainer";
 
 export default function RestaurantMenu() {
   return (
-    <>
-      <Header />
-      <RestaurantContainer>
-        <section className="w-[100%] rounded bg-white p-3 shadow-lg">
-          <RestaurantNavbar />
-          <Menu />
-        </section>
-      </RestaurantContainer>
-    </>
+    <section className="w-[100%] rounded bg-white p-3 shadow-lg">
+      <RestaurantNavbar />
+      <Menu />
+    </section>
   );
 }
