@@ -1,24 +1,18 @@
 import { Metadata, ResolvingMetadata } from "next";
 import Header from "./components/Header";
 import RestaurantContainer from "./components/RestaurantContainer";
-import { PrismaClient } from "@prisma/client";
+import { fetchRestaurantBySlug } from "../../../utils/fetch-restaurant";
 
 export type SlugParams = {
   slug: string;
 };
-
-const prisma = new PrismaClient();
 
 export async function generateMetadata(
   { params }: { params: SlugParams },
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const slug = params.slug;
-  const restaurant = await prisma.restaurant.findUnique({
-    where: {
-      slug,
-    },
-  });
+  const restaurant = await fetchRestaurantBySlug(slug);
 
   if (!restaurant) throw new Error();
 

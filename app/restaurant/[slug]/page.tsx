@@ -8,49 +8,14 @@ import ReviewsList from "./components/ReviewsList";
 import Title from "./components/Title";
 import Head from "next/head";
 import type { SlugParams } from "./layout";
-
-type Restaurant = {
-  id: number;
-  name: string;
-  images: string[];
-  description: string;
-  slug: string;
-};
-
-const prisma = new PrismaClient();
-
-const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
-  const restaurant = await prisma.restaurant.findUnique({
-    where: {
-      slug,
-    },
-    select: {
-      id: true,
-      name: true,
-      images: true,
-      description: true,
-      slug: true,
-    },
-  });
-
-  if (!restaurant) {
-    throw new Error();
-  }
-
-  console.log("restaurant", restaurant);
-
-  return restaurant;
-};
+import { fetchRestaurantBySlug } from "../../../utils/fetch-restaurant";
 
 export default async function RestaurantDetails({
   params,
 }: {
   params: SlugParams;
 }) {
-  // console.log(params.slug);
-
   const restaurant = await fetchRestaurantBySlug(params.slug);
-  // console.log("restaurant", restaurant);
 
   return (
     <>

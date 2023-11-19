@@ -7,6 +7,7 @@ export default function Gallery({ images }: { images: string[] }) {
       <div className="grid grid-cols-3 gap-1">
         {images.map((image) => (
           <img
+            key={image}
             className="h-44 w-full object-cover object-center"
             src={image}
             alt=""

@@ -13,8 +13,9 @@ export default function SearchBar() {
 
   const handleButtonClick = (e: React.PointerEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (location === "banana") return;
-    router.push("/search");
+    if (location === "") return;
+    router.push(`/search?city=${location}`);
+    setLocation("");
   };
 
   return (
