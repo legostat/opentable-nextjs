@@ -1,6 +1,12 @@
 import { Cuisine, PRICE, Location, PrismaClient } from "@prisma/client";
 import { cache } from "react";
 
+export type SearchParams = {
+  city?: string;
+  cuisine?: string;
+  price?: PRICE;
+};
+
 export type RestaurantCardType = {
   id: number;
   name: string;
@@ -14,32 +20,31 @@ export type RestaurantCardType = {
 const prisma = new PrismaClient();
 
 export const fetchRestaurants = cache(
-  async (location?: string): Promise<RestaurantCardType[]> => {
-    const select = {
-      id: true,
-      name: true,
-      main_image: true,
-      cuisine: true,
-      location: true,
-      price: true,
-      slug: true,
-    };
-
-    if (!location) {
-      return await prisma.restaurant.findMany({
-        select,
-      });
-    }
-
-    return await prisma.restaurant.findMany({
+  (searchParams?: SearchParams): Promise<RestaurantCardType[]> =>
+    prisma.restaurant.findMany({
       where: {
         location: {
           name: {
-            equals: location,
+            equals: searchParams?.city?.toLowerCase(),
           },
         },
+        cuisine: {
+          name: {
+            equals: searchParams?.cuisine?.toLocaleLowerCase(),
+          },
+        },
+        price: {
+          equals: searchParams?.price,
+        },
       },
-      select,
-    });
-  },
+      select: {
+        id: true,
+        name: true,
+        main_image: true,
+        cuisine: true,
+        location: true,
+        price: true,
+        slug: true,
+      },
+    }),
 );

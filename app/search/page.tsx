@@ -2,24 +2,21 @@ import { Metadata } from "next";
 import { Header } from "./components/Header";
 import { RestaurantCard } from "./components/RestaurantCard";
 import { SearchSidebar } from "./components/SearchSidebar";
-import { fetchRestaurants } from "../../utils/fetch-restaurants";
+import { SearchParams, fetchRestaurants } from "../../utils/fetch-restaurants";
 import { fetchLocations } from "../../utils/fetch-locations";
 import { fetchCuisines } from "../../utils/fetch-cuisines";
-
-type Props = {
-  searchParams?: {
-    city?: string;
-  };
-};
+import { PRICE } from "@prisma/client";
 
 export const metadata: Metadata = {
   title: "Search | OpenTable",
 };
 
-export default async function Search({ searchParams }: Props) {
-  const city = searchParams?.city?.toLowerCase();
-
-  const restaurants = await fetchRestaurants(city);
+export default async function Search({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const restaurants = await fetchRestaurants(searchParams);
   const locations = await fetchLocations();
   const cuisines = await fetchCuisines();
 
@@ -27,7 +24,11 @@ export default async function Search({ searchParams }: Props) {
     <>
       <Header />
       <main className="mx-auto flex w-2/3 gap-10 py-4">
-        <SearchSidebar locations={locations} cuisines={cuisines} />
+        <SearchSidebar
+          locations={locations}
+          cuisines={cuisines}
+          searchParams={searchParams}
+        />
         <section className="flex-1 space-y-5 divide-y">
           {restaurants.length ? (
             restaurants.map((restaurant) => (
