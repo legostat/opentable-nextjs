@@ -1,12 +1,24 @@
 import Link from "next/link";
 import Price from "../../components/Price";
-import { RestaurantCardType } from "../../../utils/fetch-restaurants";
+import { RestaurantCardType } from "../../../utils/fetchRestaurants";
+import { getReviewsCountAndText } from "../../../utils/getReviewsCountAndText";
+import { calculateReviewRating } from "../../../utils/calculateReviewRating";
+import Stars from "../../components/Stars";
 
 export function RestaurantCard({
   restaurant,
 }: {
   restaurant: RestaurantCardType;
 }) {
+  const renderRatingText = () => {
+    const rating = calculateReviewRating(restaurant.reviews);
+
+    if (rating > 4) return "Awesome";
+    if (rating <= 4 && rating > 3) return "Good";
+    if (rating <= 3 && rating > 0) return "Average";
+    return "";
+  };
+
   return (
     <div className="flex gap-5 pt-5">
       <div className="w-44 flex-none">
@@ -18,9 +30,9 @@ export function RestaurantCard({
       </div>
       <div className="flex-1">
         <h2 className="text-3xl">{restaurant.name}</h2>
-        <div className="flex gap-2">
-          <div className="flex">*****</div>
-          <p className="text-sm">Awesome</p>
+        <div className="flex items-center gap-2">
+          <Stars reviews={restaurant.reviews} />
+          <p className="text-sm">{renderRatingText()}</p>
         </div>
         <div className="mb-9">
           <div className="flex gap-4 text-reg">

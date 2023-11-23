@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { RestaurantCardType } from "../page";
 import Price from "./Price";
+import { RestaurantCardType } from "../../utils/fetchRestaurants";
+import { getReviewsCountAndText } from "../../utils/getReviewsCountAndText";
+import Stars from "./Stars";
 
 export default function RestaurantCard({
   restaurant,
@@ -20,8 +22,10 @@ export default function RestaurantCard({
       <div className="px-3 py-2">
         <h3 className="mb-3 text-2xl font-bold"> {restaurant.name} </h3>
         <div className="flex items-center gap-2">
-          <div className="flex">*****</div>
-          <p className="font-medium">77 reviews</p>
+          <Stars reviews={restaurant.reviews} />
+          <p className="font-medium">
+            {getReviewsCountAndText(restaurant.reviews)}
+          </p>
         </div>
         <div className="flex gap-3 text-reg font-light capitalize">
           <p>{restaurant.cuisine.name}</p>

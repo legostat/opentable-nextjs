@@ -8,7 +8,7 @@ import ReviewsList from "./components/ReviewsList";
 import Title from "./components/Title";
 import Head from "next/head";
 import type { SlugParams } from "./layout";
-import { fetchRestaurantBySlug } from "../../../utils/fetch-restaurant";
+import { fetchRestaurantBySlug } from "../../../utils/fetchRestaurant";
 
 export default async function RestaurantDetails({
   params,
@@ -25,10 +25,10 @@ export default async function RestaurantDetails({
       <section className="w-[70%] rounded bg-white p-3 shadow-lg">
         <RestaurantNavbar slug={restaurant.slug} />
         <Title name={restaurant.name} />
-        <Rating />
+        <Rating reviews={restaurant.reviews} />
         <Description description={restaurant.description} />
         <Gallery images={restaurant.images} />
-        <ReviewsList />
+        <ReviewsList reviews={restaurant.reviews} />
       </section>
       <aside className="w-[27%] text-reg">
         <ReservationCard />

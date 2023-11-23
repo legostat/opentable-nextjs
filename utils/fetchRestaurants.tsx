@@ -1,4 +1,4 @@
-import { Cuisine, PRICE, Location, PrismaClient } from "@prisma/client";
+import { Cuisine, PRICE, Location, PrismaClient, Review } from "@prisma/client";
 import { cache } from "react";
 
 export type SearchParams = {
@@ -15,6 +15,7 @@ export type RestaurantCardType = {
   location: Location;
   price: PRICE;
   slug: string;
+  reviews: Review[];
 };
 
 const prisma = new PrismaClient();
@@ -45,6 +46,7 @@ export const fetchRestaurants = cache(
         location: true,
         price: true,
         slug: true,
+        reviews: true,
       },
     }),
 );

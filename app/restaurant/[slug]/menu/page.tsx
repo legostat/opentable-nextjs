@@ -2,24 +2,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import RestaurantNavbar from "../components/RestaurantNavbar";
 import Menu from "../components/Menu";
 import type { SlugParams } from "../layout";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
-
-const fetchItems = async (slug: string) => {
-  const restaurant = await prisma.restaurant.findUnique({
-    where: {
-      slug,
-    },
-    select: {
-      items: true,
-    },
-  });
-
-  if (!restaurant) throw new Error();
-
-  return restaurant.items;
-};
+import { fetchItems } from "../../../../utils/fetchItems";
 
 export async function generateMetadata(
   _: null,

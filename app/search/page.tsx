@@ -2,10 +2,9 @@ import { Metadata } from "next";
 import { Header } from "./components/Header";
 import { RestaurantCard } from "./components/RestaurantCard";
 import { SearchSidebar } from "./components/SearchSidebar";
-import { SearchParams, fetchRestaurants } from "../../utils/fetch-restaurants";
-import { fetchLocations } from "../../utils/fetch-locations";
-import { fetchCuisines } from "../../utils/fetch-cuisines";
-import { PRICE } from "@prisma/client";
+import { SearchParams, fetchRestaurants } from "../../utils/fetchRestaurants";
+import { fetchLocations } from "../../utils/fetchLocations";
+import { fetchCuisines } from "../../utils/fetchCuisines";
 
 export const metadata: Metadata = {
   title: "Search | OpenTable",

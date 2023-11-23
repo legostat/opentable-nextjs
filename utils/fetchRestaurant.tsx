@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Review } from "@prisma/client";
 import { cache } from "react";
 
 type Restaurant = {
@@ -7,6 +7,7 @@ type Restaurant = {
   images: string[];
   description: string;
   slug: string;
+  reviews: Review[];
 };
 
 const prisma = new PrismaClient();
@@ -23,6 +24,7 @@ export const fetchRestaurantBySlug = cache(
         images: true,
         description: true,
         slug: true,
+        reviews: true,
       },
     });
 

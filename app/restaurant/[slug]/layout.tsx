@@ -1,7 +1,7 @@
 import { Metadata, ResolvingMetadata } from "next";
 import Header from "./components/Header";
 import RestaurantContainer from "./components/RestaurantContainer";
-import { fetchRestaurantBySlug } from "../../../utils/fetch-restaurant";
+import { fetchRestaurantBySlug } from "../../../utils/fetchRestaurant";
 
 export type SlugParams = {
   slug: string;

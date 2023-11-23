@@ -1,7 +1,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { type Cuisine, type Location, PRICE } from "@prisma/client";
-import { type SearchParams } from "../../../utils/fetch-restaurants";
+import { type SearchParams } from "../../../utils/fetchRestaurants";
 
 export function SearchSidebar({
   locations,

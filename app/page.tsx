@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
-import { fetchRestaurants } from "../utils/fetch-restaurants";
+import { fetchRestaurants } from "../utils/fetchRestaurants";
 
 export const metadata: Metadata = {
   title: "Catalog | OpenTable",
