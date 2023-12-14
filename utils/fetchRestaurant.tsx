@@ -1,4 +1,5 @@
 import { PrismaClient, Review } from "@prisma/client";
+import { notFound } from "next/navigation";
 import { cache } from "react";
 
 type Restaurant = {
@@ -29,10 +30,8 @@ export const fetchRestaurantBySlug = cache(
     });
 
     if (!restaurant) {
-      throw new Error();
+      notFound();
     }
-
-    // console.log("restaurant", restaurant);
 
     return restaurant;
   },
