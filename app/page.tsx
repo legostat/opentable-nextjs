@@ -14,7 +14,7 @@ export default async function Home() {
       <Header />
       <main className="mt-10 grid grid-cols-4 gap-6 px-36 py-3">
         {restaurants.map((restaurant) => (
-          <RestaurantCard restaurant={restaurant} />
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
       </main>
     </>

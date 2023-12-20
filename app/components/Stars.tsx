@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { type Review } from "@prisma/client";
 import fullStar from "../../public/icons/full-star.png";
@@ -32,8 +34,8 @@ export default function Stars({
       }
     }
 
-    return stars.map((star) => (
-      <Image className="h-4 w-4 flex-none" src={star} alt="" />
+    return stars.map((star, idx) => (
+      <Image key={idx} className="h-4 w-4 flex-none" src={star} alt="" />
     ));
   };
 
