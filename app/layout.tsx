@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import AuthContext from "./context/AuthContext";
 import "./globals.css";
 
 export default function RootLayout({
@@ -14,10 +15,12 @@ export default function RootLayout({
       */}
       <head />
       <body className="bg-gray-100">
-        <div className="m-auto mb-4 min-h-screen max-w-screen-2xl bg-white pb-4">
-          <Navbar />
-          {children}
-        </div>
+        <AuthContext>
+          <div className="m-auto mb-4 min-h-screen max-w-screen-2xl bg-white pb-4">
+            <Navbar />
+            {children}
+          </div>
+        </AuthContext>
       </body>
     </html>
   );

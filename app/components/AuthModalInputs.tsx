@@ -17,7 +17,7 @@ export default function AuthModalInputs({
   isSignin,
 }: Props) {
   return (
-    <div>
+    <form>
       {isSignin ? null : (
         <div className="my-3 flex justify-between text-sm">
           <input
@@ -78,6 +78,6 @@ export default function AuthModalInputs({
           onChange={handleChangeInput}
         />
       </div>
-    </div>
+    </form>
   );
 }
