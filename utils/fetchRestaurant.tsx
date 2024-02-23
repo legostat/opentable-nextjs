@@ -9,6 +9,8 @@ type Restaurant = {
   description: string;
   slug: string;
   reviews: Review[];
+  open_time: string;
+  close_time: string;
 };
 
 const prisma = new PrismaClient();
@@ -26,6 +28,8 @@ export const fetchRestaurantBySlug = cache(
         description: true,
         slug: true,
         reviews: true,
+        open_time: true,
+        close_time: true,
       },
     });
 

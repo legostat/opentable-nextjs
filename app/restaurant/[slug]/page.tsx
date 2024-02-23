@@ -31,7 +31,11 @@ export default async function RestaurantDetails({
         <ReviewsList reviews={restaurant.reviews} />
       </section>
       <aside className="w-[27%] text-reg">
-        <ReservationCard />
+        <ReservationCard
+          openTime={restaurant.open_time}
+          closeTime={restaurant.close_time}
+          slug={restaurant.slug}
+        />
       </aside>
     </>
   );
